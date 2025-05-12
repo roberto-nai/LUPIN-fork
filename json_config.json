@@ -1,0 +1,24 @@
+{
+  "LOG_USE_COL": [
+    "case",
+    "activity",
+    "timestamp",
+    "resource",
+    "ESI",
+    "OUTCOME",
+    "INPAT_HOSP_DEP",
+    "CASE_DURATION_sec",
+    "REMAINING_TIME_sec",
+    "DATE",
+    "CURRENT_ESI_1",
+    "CURRENT_ESI_2",
+    "CURRENT_ESI_3",
+    "CURRENT_ESI_4",
+    "CURRENT_ESI_5"
+  ],
+  "MAX_LEN": 512,
+  "BATCH_SIZE": 8,
+  "LEARNING_RATE": 1e-5,
+  "EPOCHS": 1,
+  "TYPE": "all"
+}
