@@ -45,6 +45,7 @@ def set_seed(seed):
 set_seed(SEED)
 
 def train_fn(model, train_loader, optimizer, device, criterion):
+    print("> Performing train_fn...")
     model.train()
     total_loss = 0
     for X_train_batch in train_loader:
@@ -60,8 +61,8 @@ def train_fn(model, train_loader, optimizer, device, criterion):
         total_loss += loss.item()
     return total_loss / len(train_loader)
 
-
 def evaluate_fn(model, data_loader, criterion, device):
+    print("> Performing evaluate_fn...")
     model.eval()
     total_loss = 0
     with torch.no_grad():
@@ -75,6 +76,7 @@ def evaluate_fn(model, data_loader, criterion, device):
     return total_loss / len(data_loader)
 
 def train_llm(model, train_data_loader, valid_data_loader, optimizer, EPOCHS, criterion):
+        print("> Performing train_llm...")
         best_valid_loss = float("inf")
         early_stop_counter = 0
         patience = 5

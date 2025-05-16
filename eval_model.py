@@ -1,6 +1,7 @@
 """
 eval_model.py
 [2025-05-12]: added json_config.py / load_config
+[2025-05-14]: added DL values computed
 """
 ### IMPORTS ###
 import sys
@@ -143,7 +144,8 @@ if __name__ == '__main__':
             dl_distance = 1 - (damerau_levenshtein_distance(seq_pred, seq_true) / max(len(seq_pred), len(seq_true))) # DL distance
             file_dl.write(seq_pred+','+seq_true+','+str(dl_distance)+'\n')
             list_dl_distance.append(dl_distance)
-    print(f"DL --> {np.mean(list_dl_distance):.3f}")
+    print(f"DL values computed -->  {len(list_dl_distance)}")
+    print(f"DL average --> {np.mean(list_dl_distance):.3f}")
     print()
 
     print('> Saving DL...')

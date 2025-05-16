@@ -20,7 +20,3 @@ def load_config(file_path):
     except json.JSONDecodeError:
         print(f"Error: The file '{file_path}' contains invalid JSON.")
         return {}
-
-# Example usage
-config = load_config("log_config.json")
-print(config)

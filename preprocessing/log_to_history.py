@@ -4,6 +4,7 @@
 [2025-05-12]: added log_cols
 [2025-05-12]: added missing_values check
 [2025-05-12]: added get_event_log(self) to return the event log dataframe
+[2025-05-12]: added in __gen_prefix_history the max length of a case and values of each prefix
 """
 from utility import log_config as lg
 from jinja2 import Template
@@ -65,6 +66,8 @@ class Log():
         return islice(self.pad_infinite(iterable, padding), size)
 
     def __gen_prefix_history(self, df):
+            print(">> Performing __gen_prefix_history")
+            print("Max length trace in event log", self.__max_length)
             list_seq = []
             list_len_prefix = []
             sequence = df.groupby('case', sort=False)
@@ -110,6 +113,7 @@ class Log():
                     list_seq.append(prefix_hist)
                     list_len_prefix.append(len_prefix)
                     len_prefix = len_prefix + 1
+                print(f"Case: {row['case']} | Prefixes: {len_prefix}")
                 suffixes = []
                 activity_list.pop(0)
                 activity_list.append('ENDactivity')
@@ -124,6 +128,7 @@ class Log():
                         dict_event_label[v].extend(group_data[v].shift(-1).fillna('END'+v).tolist())
                     else:
                         dict_event_label[v].extend(group_data[v].shift(-1).fillna(0).tolist())
+            print()
             return list_seq, dict_event_label, list_len_prefix, dict_len_label
 
     def __extract_timestamp_features(self, group):
@@ -151,6 +156,7 @@ class Log():
             print(f"ERROR! Columns with None values: {columns_with_none}")
         else:
             print("No columns with None values.")
+        print()
 
         self.__log['activity']= self.__log['activity'].str.replace(' ', '')
         self.__log['activity']= self.__log['activity'].str.replace('+', '')
